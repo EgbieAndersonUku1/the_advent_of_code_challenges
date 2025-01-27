@@ -23,10 +23,8 @@ def get_problem_file(text_file="problem_input.txt", mode="r"):
         raise RuntimeError(f"An error occurred while reading the file: {e}")
     
     
-def get_elves_calories_count() -> dict:
+def get_elves_calories_count(calories_list: list) -> dict:
     """Parses the input file and calculates total calories per elf."""
-    
-    calories_list     = get_problem_file()
     calories_count    = 0
     num_of_elves_seen = 0
     
@@ -81,8 +79,8 @@ def get_the_highest_medium_and_lowest_calories_total(calories_list: list) -> int
 
 def main():
     """The main function that runs the file"""
-    
-    elves         = get_elves_calories_count()
+    calories     = get_problem_file()
+    elves         = get_elves_calories_count(calories)
     calories_list = sort_calories_by_highest(elves)
 
     highest_calories = calories_list[0]
