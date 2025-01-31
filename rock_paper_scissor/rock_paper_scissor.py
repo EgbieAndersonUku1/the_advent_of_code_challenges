@@ -177,15 +177,13 @@ def cheat_to_win_or_lose(player1_hand, player2_hand):
     LOSS = "X"
     WIN  = "Z"
 
-    if player1_hand == WIN:
-        winning_hand = get_opposite_hand(player2_hand)
-        return winning_hand, player2_hand
-    elif player1_hand == DRAW:
-        return player2_hand, player2_hand
-    elif player1_hand == LOSS:
-        losing_hand = get_opposite_hand(player2_hand, is_winner=False)
-        return losing_hand, player2_hand
-
+    HAND_SET = {
+        WIN: get_opposite_hand(player2_hand),
+        DRAW: player2_hand,
+        LOSS: get_opposite_hand(player2_hand, is_winner=False)
+    }
+    
+    return HAND_SET[player1_hand], player2_hand
 
 
 def play_game(game_settings, play_dishonest_game=False):
