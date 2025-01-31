@@ -189,7 +189,7 @@ def cheat_to_win_or_lose(player1_hand, player2_hand):
 
 
 
-def play_game(game_settings, dishonest_game=False):
+def play_game(game_settings, play_dishonest_game=False):
     """Reads the input file and calculates the total score for player1."""
     
     text_file     = "problem_input.txt"
@@ -199,7 +199,7 @@ def play_game(game_settings, dishonest_game=False):
         for line in f:
             if line.strip():  
                 
-                if dishonest_game:
+                if play_dishonest_game:
                     opponent_hand, player_1_hand = line.strip().split(" ")
                     player_1_hand, opponent_hand = cheat_to_win_or_lose(player1_hand=player_1_hand, player2_hand=opponent_hand)
                   
@@ -217,7 +217,7 @@ if __name__ == "__main__":
     game_settings = {"R": 1, "P": 2, "S": 3, "DRAW": 3, "WIN" : 6, "LOSS": 0}
     
     print(f"Game 1 -> RPS -> Total score: {play_game(game_settings=game_settings)}")
-    print(f"Game 2 -> RPS with player 1 cheating -> Total score : {play_game(game_settings=game_settings, dishonest_game=True)}")
+    print(f"Game 2 -> RPS with player 1 cheating -> Total score : {play_game(game_settings=game_settings, play_dishonest_game=True)}")
    
 
 
