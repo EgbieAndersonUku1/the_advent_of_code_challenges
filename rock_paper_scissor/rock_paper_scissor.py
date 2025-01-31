@@ -183,7 +183,10 @@ def cheat_to_win_or_lose(player1_hand, player2_hand):
         LOSS: get_opposite_hand(player2_hand, is_winner=False)
     }
     
-    return HAND_SET[player1_hand], player2_hand
+    try:
+        return HAND_SET[player1_hand], player2_hand
+    except KeyError:
+        raise ValueError(f"The player hand combination is invalid: Player 1 {player1_hand} and Player 2 {player2_hand}")
 
 
 def play_game(game_settings, play_dishonest_game=False):
