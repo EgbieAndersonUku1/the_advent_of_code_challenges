@@ -16,8 +16,8 @@ def determine_rps_result(player_1:str, player2:str, rules:dict) -> dict:
     score based on the game outcome.
 
     Args:
-        player_1 (str): The choice of Player 1 ('R', 'P', or 'S').
-        player2 (str): The choice of the player2 ('R', 'P', or 'S').
+        player_1 (str): The choice of Player 1 ('A', 'B', 'C', 'X', 'Y' or 'Z' ).
+        player2 (str): The choice of the player2 ('A', 'B', 'C', 'X', 'Y' or 'Z' ).
         rules (dict) : The rules for each game
 
     Returns:
@@ -72,8 +72,7 @@ def calculate_rps_score(player1_choice:str, player2_choice:str, game_settings:di
         game_settings (dict): The game settings for the game, differnt games have differnt rules
         
     """
-  
-    
+      
     DRAW  = game_settings.get("DRAW")
     WIN   = game_settings.get("WIN")
     LOSS  = game_settings.get("LOSS")
@@ -199,14 +198,11 @@ def play_game(game_settings, play_dishonest_game=False):
         for line in f:
             if line.strip():  
                 
+                opponent_hand, player_1_hand = line.strip().split(" ")
+                
                 if play_dishonest_game:
-                    opponent_hand, player_1_hand = line.strip().split(" ")
                     player_1_hand, opponent_hand = cheat_to_win_or_lose(player1_hand=player_1_hand, player2_hand=opponent_hand)
                   
-                else:
-                    opponent_hand, player_1_hand = line.strip().split(" ")
-             
-           
                 result_dict  = determine_rps_result(player_1=player_1_hand, player2=opponent_hand, rules=game_settings)
                 total += result_dict["player1"]
     return total
